@@ -1,150 +1,142 @@
 #include<iostream>
 using namespace std;
 
-class node
-{
-	node *next;
-	int data;
+class node{
 	
+	int data;
+	node *next;
 	public:
 	void insert();
+	void del();
 	void show();
 	void append();
-	void del();
 	void update();
+	
 };
 
-
-node *head=NULL;
-node *tail=NULL;
-node *current=NULL;
-node *temp=NULL;
+node *head =NULL;
+node *tail =NULL;
+node *current =NULL;
+node *temp = NULL;
 node *c=NULL;
 int size=0;
 
 void node::insert()
 {
-	int a;
-	cout<<"Insert Value"<<endl;
-	cin>>a;
+	int val;
+	cout<<"Enter Value To Insert"<<endl;
+	cin>>val;
 	
-	temp=new node();
-	temp->data=a;
+	temp = new node();
 	temp->next=NULL;
+	temp->data=val;
 	size++;
-	
 	if(head==NULL)
 	{
 		head=temp;
 		tail=temp;
 		current=temp;
 	}
-	else
-	{
+	else{
 		tail->next=temp;
 		tail=tail->next;
 	}
-	
-	
 }
 
 void node::show()
 {
-	cout<<"All Data :"<<endl;
-	
-	temp=head;
-	while(temp!=NULL)
+	cout<<"All Data"<<endl;
+	current=head;
+	while(current!=NULL)
 	{
-		cout<<temp->data<<endl;
-		temp=temp->next;
-	}
-	
+		cout<<current->data<<'\t';
+		current=current->next;
+		}	
+		cout<<endl;
 }
 
 void node::append()
 {
-	int val;
 	int pos;
-	cout<<"Enter value to add"<<endl;
-	cin>>val;
-	cout<<"Enter position to append"<<endl;
+	int val;
+	cout<<"Enter Position To Append Data"<<endl;
 	cin>>pos;
-	
-	
+	cout<<"Enter Value To Insert Data"<<endl;
+	cin>>val;
 	
 	if(size==0)
 	{
 		temp=new node();
 		temp->next=NULL;
 		temp->data=val;
-		head=temp;
-		tail=temp;
-		current=temp;	
 		size++;
 	}
-	else if(pos==0 && size>0)
+	else if(pos==1&&size>0)
 	{
-		temp=new node();
+		temp =new node();
 		temp->next=head;
 		temp->data=val;
 		head=temp;
-			size++;
+		size++;
 	}
-	
-	else if(pos>0 && pos<size)
-	{
+	else if(pos>1&&pos<size)
+	{ 
 		current=head;
-		c=head;
-		for(int i=0;i<pos;i++)
+		for(int i=1;i<pos;i++)
 		{
 			c=current;
 			current=current->next;
 		}
-		
 		temp=new node();
 		c->next=temp;
 		temp->next=current;
 		temp->data=val;
-			size++;
+		size++;
 	}
 	else if(pos==size)
 	{
+		current=head;
+		c=head;
+		while(current!=NULL)
+		{
+			c=current;		
+			current=current->next;
+	}
 		temp=new node();
-		temp->next=NULL;
 		temp->data=val;
+		temp->next=NULL;
 		tail->next=temp;
 		tail=tail->next;
-			size++;
+		size++;
 	}
 	else
 	{
-		cout<<"out of bound"<<endl;
+		cout<<"Out of List"<<endl;
 	}
-	
-	
 }
 
 void node::del()
 {
-
 	int pos;
-	cout<<"Enter position to delete"<<endl;
+	
+	cout<<"Enter Position to delete"<<endl;
 	cin>>pos;
-	current=head;
 	if(size==0)
 	{
-		cout<<"No data to delete"<<endl;
+		cout<<"No Data To Delete"<<endl;
 	}
-	else if(pos==0 && size>0)
+	else if(pos==1&&size>0)
+	{
+		temp=head;
+		head=head->next;
+		delete temp;
+		size--;
+	}
+	else if(pos>1&&pos<size)
 	{
 		current=head;
-		head=head->next;
-		delete current;
-	}
-	else if(pos>0 && pos<size)
-	{
-			c=head;
-		for(int i=0;i<pos;i++)
+		c=current;
+		for(int i=1;i<pos;i++)
 		{
 			c=current;
 			current=current->next;
@@ -155,25 +147,27 @@ void node::del()
 	}
 	else if(pos==size)
 	{
-	current=head;
-	c=current;
-	while(current!=NULL)
+		cout<<"LAST";
+			current=head;
+		c=current;
+	for(int i=1;i<size;i++)
 	{
-			c=current;
+	
+			c=current;		
 			current=current->next;
-	}
-		tail=c;
-		tail->next=NULL;
-		delete current;
-			size--;
-	}
+}
+	
+
+	tail=c;
+	tail->next=NULL;
+	delete current;
+	size--;
+}
 	else
 	{
-		cout<<"out of bound"<<endl;
+		cout<<"No Position";
 	}
-	
 }
-
 void node::update()
 {
 	
@@ -183,37 +177,32 @@ int main()
 {
 	node n;
 	int a;
-	
 	while(1)
 	{
-		cout<<"Press 1 to insert data"<<endl;
-		cout<<"Press 2 to display data"<<endl;
-		cout<<"Press 3 to append"<<endl;
-		cout<<"Press 4 to delete"<<endl;
-		cout<<"Press 5 to update"<<endl;
+		cout<<"Press 1 to Insert Data"<<endl;
+		cout<<"Press 2 to Display Data"<<endl;
+		cout<<"Press 3 to Append Data"<<endl;
+		cout<<"Press 4 to Delete Data"<<endl;
+		cout<<"Press 5 to Update Data"<<endl;
 		cin>>a;
-		switch(a){
+		switch(a)
+		{
 			case 1:
 				n.insert();
 				break;
-			
 			case 2:
 				n.show();
 				break;
-			
 			case 3:
 				n.append();
-			 	break;
-				 
+				break;
 			case 4:
 				n.del();
 				break;
-				
 			case 5:
 				n.update();
-				break;
-						 		
-			
+				break;			
+					
 		}
 	}
 }
