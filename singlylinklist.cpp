@@ -147,7 +147,6 @@ void node::del()
 	}
 	else if(pos==size)
 	{
-		cout<<"LAST";
 			current=head;
 		c=current;
 	for(int i=1;i<size;i++)
