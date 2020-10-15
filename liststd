@@ -1,0 +1,58 @@
+#include<iostream>
+#include<list>
+using namespace std;
+
+
+void show(list <int> *g){ //show list items
+	
+	list<int>::iterator l; //pointer to fech the values and the next node address
+	for(l=g->begin();l!=g->end();l++)
+	{
+		cout<<"Values: "<<*l<<endl;
+		
+	}
+}
+
+void insert(list <int> *g,int val)
+{
+	g->push_back(val); // push value at back means on right side
+}
+
+void removeval(list <int> *g,int val)
+{
+	g->remove(val); //search all list and remove value if its in the list
+}
+
+
+int main()
+{
+	list <int> l; // empty list int datatype
+	int a;
+	while(1)
+	{
+	
+	cout<<"Press 1 to add value into list"<<endl;
+	cout<<"Press 2 to display list"<<endl;
+	cout<<"Press 3 to remove value"<<endl;
+	cin>>a;
+	
+	switch(a)
+	{
+		case 1:
+			int val;
+			cout<<"Enter Value To Insert"<<endl;
+			cin>>val;
+			insert(&l,val);
+			break;
+		case 2:
+			show(&l);	
+			break;
+		case 3:
+			int v;
+			cout<<"Enter value to remove"<<endl;
+			cin>>v;
+			
+			removeval(&l,v);	
+	}
+}
+}
