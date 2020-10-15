@@ -95,6 +95,7 @@ void node::append(){
 		temp=new node();
 		temp->data=value;
 		current->next=temp;
+		tail=temp;
 		temp->next=head;
 		size++;
 //		cout<<temp->next->data;
@@ -105,7 +106,64 @@ void node::append(){
 
 void node::del()
 {
-	
+		int pos;
+	cout<<"Enter position you want to delete"<<endl;
+	cin>>pos;
+	if(size==0)
+	{
+		cout<<"No data to delete"<<endl;
+		
+	}
+	else if(pos==1&&pos==size)
+	{
+			current=head;
+			delete current;
+			head=NULL;
+			tail=NULL;
+			temp=NULL;
+			c=NULL;
+		//	cout<<head->data;
+		size--;
+	}
+	else if(pos==1&&pos<size)
+	{
+		current=head;
+		head=head->next;
+		tail->next=head;
+		cout<<head->data<<current->data;
+		delete current;
+		size--;
+	}
+	else if(pos>1&&pos<size)
+	{
+			current=head;
+			c=head;
+		for(int i=1;i<pos;i++)
+		{
+			
+			c=current;
+			current=current->next;
+		}
+		c->next=current->next;
+		delete current;
+		size--;
+	}
+	else if(pos==size)
+	{
+			c=head;
+		current=head;
+		for(int i=1;i<size;i++)
+		{
+			c=current;
+			current=current->next;
+//			cout<<current->data<<endl;
+		}
+		tail=c;
+		c->next=head;
+		delete current;
+		size--;
+		
+	}
 }
 
 
@@ -118,13 +176,20 @@ void node::show()
 {
 	cout<<"ALL DATA"<<endl;
 	current=head;
+	if(head==NULL)
+	{
+		cout<<"No data to show"<<endl;
+	}
+	else
+	{
+	
 	while(current->next!=head)
 	{
 		cout<<current->data<<endl;
 		current=current->next;
 	}
 	cout<<current->data<<endl;
-
+}
 }
 
 
@@ -164,6 +229,5 @@ while(1)
 	}
 }
 }
-
 
 
