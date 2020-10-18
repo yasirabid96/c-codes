@@ -45,6 +45,12 @@ void node::insert()
 
 void node::show()
 {
+	if(head==NULL)
+	{
+		cout<<"NO Data"<<endl;	
+	}
+	else
+	{
 	cout<<"All Data"<<endl;
 	current=head;
 	while(current!=NULL)
@@ -53,7 +59,8 @@ void node::show()
 		current=current->next;
 		}	
 		cout<<endl;
-}
+	}
+	}
 
 void node::append()
 {
@@ -124,6 +131,16 @@ void node::del()
 	if(size==0)
 	{
 		cout<<"No Data To Delete"<<endl;
+	}
+	if(pos==0&&pos==size)
+	{
+		temp=head;
+		delete temp;
+		head=NULL;
+		tail-NULL;
+		current=NULL:
+		temp=NULL:
+		size--;
 	}
 	else if(pos==1&&size>0)
 	{
