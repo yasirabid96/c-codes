@@ -77,8 +77,11 @@ void node::append()
 		temp->next=NULL;
 		temp->data=val;
 		size++;
+		head=temp
+		tail=temp;
+		current=temp;
 	}
-	else if(pos==1&&size>0)
+	else if(pos==1&&pos<size)
 	{
 		temp =new node();
 		temp->next=head;
@@ -142,7 +145,7 @@ void node::del()
 		temp=NULL:
 		size--;
 	}
-	else if(pos==1&&size>0)
+	else if(pos==1&&pos<size)
 	{
 		temp=head;
 		head=head->next;
